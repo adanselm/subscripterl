@@ -1,0 +1,14 @@
+
+
+{application, subscripterl,
+ [
+  {description, "Manage your customers' access to your products."},
+  {vsn, "0.1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { sub_app, []}},
+  {env, []}
+ ]}.
