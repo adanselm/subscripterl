@@ -26,7 +26,7 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    {ok, { {one_for_one, 5, 10}, 
-        [
+    {ok, { {one_for_one, 5, 10}, [
+          ?CHILD(sub_dbpool_sup, supervisor)
         ]} }.
 
