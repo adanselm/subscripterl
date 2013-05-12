@@ -18,7 +18,7 @@ init(Args) ->
     Username = proplists:get_value(username, Args),
     Password = proplists:get_value(password, Args),
     {ok, Conn} = pgsql:connect(Hostname, Username, Password, [
-        {database, Database}
+        {database, Database}, {ssl, required}
     ]),
     {ok, #state{conn=Conn}}.
 

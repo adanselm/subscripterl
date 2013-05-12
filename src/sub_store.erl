@@ -10,8 +10,9 @@
 %%
 create_user(Email) ->
   Uuid = sub_uuid:generate(),
-  sub_dbproxy:equery("INSERT INTO sub_app.users VALUES ($1, $2, $3, $4);",
-    [Uuid, Email, null, null]).
+  {ok _} = sub_dbproxy:equery("INSERT INTO sub_app.users VALUES ($1, $2, $3, $4);",
+    [Uuid, Email, null, null]),
+  {ok, Uuid}.
 
 retrieve_user() ->
   ok.
@@ -26,8 +27,9 @@ delete_user() ->
 %%
 create_product(Name, Version) ->
   Uuid = sub_uuid:generate(),
-  sub_dbproxy:equery("INSERT INTO sub_app.products VALUES ($1, $2, $3, $4, $5);",
-    [Uuid, Name, Version, null, null]).
+  {ok, _} = sub_dbproxy:equery("INSERT INTO sub_app.products VALUES ($1, $2, $3, $4, $5);",
+    [Uuid, Name, Version, null, null]),
+  {ok, Uuid}.
 
 retrieve_product() ->
   ok.
@@ -43,8 +45,9 @@ delete_product() ->
 create_subscription(UserId, ProductId) ->
   Uuid = sub_uuid:generate(),
   Now = erlang:universaltime(),
-  sub_dbproxy:equery("INSERT INTO sub_app.subscriptions VALUES ($1, $2, $3, $4, $5, $6);",
-    [Uuid, UserId, ProductId, null, Now, Now]).
+  {ok, _} = sub_dbproxy:equery("INSERT INTO sub_app.subscriptions VALUES ($1, $2, $3, $4, $5, $6);",
+    [Uuid, UserId, ProductId, null, Now, Now]),
+  {ok, Uuid}.
 
 retrieve_subscription() ->
   ok.
