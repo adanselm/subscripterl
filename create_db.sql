@@ -12,8 +12,9 @@ CREATE INDEX users_email_index ON sub_app.users (email);
 CREATE TABLE sub_app.products (
   product_no uuid PRIMARY KEY,
   name text UNIQUE NOT NULL,
-  public_key text,
-  private_key text
+  rsa_key_e bytea,
+  rsa_key_n bytea,
+  rsa_key_d bytea
 );
 
 CREATE TABLE sub_app.subscriptions (

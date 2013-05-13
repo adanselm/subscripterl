@@ -2,7 +2,7 @@
 
 -export([create_user/1, retrieve_user/1, update_user/3, delete_user/1]).
 -export([create_product/1, retrieve_product/1,
-         update_product/3, delete_product/1]).
+         update_product/2, delete_product/1]).
 -export([create_subscription/2, retrieve_subscription/2,
          update_subscription/2, delete_subscription/1]).
 
@@ -32,8 +32,8 @@ delete_user(Email) ->
 %%
 create_product(Name) ->
   Uuid = sub_uuid:generate(),
-  {ok, _} = sub_dbproxy:equery("INSERT INTO sub_app.products VALUES ($1, $2, $3, $4);",
-    [Uuid, Name, null, null]),
+  {ok, _} = sub_dbproxy:equery("INSERT INTO sub_app.products VALUES ($1, $2, $3, $4, $5);",
+    [Uuid, Name, null, null, null]),
   {ok, Uuid}.
 
 retrieve_product(Name) ->
@@ -41,9 +41,10 @@ retrieve_product(Name) ->
     [Name]),
   {ok, Rows}.
 
-update_product(Name, NewPublicKey, NewPrivateKey) ->
-  sub_dbproxy:equery("UPDATE sub_app.products SET public_key=$1, private_key=$2 WHERE name=$3",
-    [NewPublicKey, NewPrivateKey, Name]).
+update_product(Name, NewKey) ->
+  [E, N, D] = NewKey,
+  sub_dbproxy:equery("UPDATE sub_app.products SET rsa_key_e=$1, rsa_key_n=$2, rsa_key_d=$3 WHERE name=$4",
+    [E, N, D, Name]).
 
 delete_product(Name) ->
   sub_dbproxy:equery("DELETE FROM sub_app.products WHERE name=$1", [Name]).
