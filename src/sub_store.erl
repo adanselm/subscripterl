@@ -10,7 +10,7 @@
 %%
 create_user(Email) ->
   Uuid = sub_uuid:generate(),
-  {ok _} = sub_dbproxy:equery("INSERT INTO sub_app.users VALUES ($1, $2, $3, $4);",
+  {ok, _} = sub_dbproxy:equery("INSERT INTO sub_app.users VALUES ($1, $2, $3, $4);",
     [Uuid, Email, null, null]),
   {ok, Uuid}.
 
