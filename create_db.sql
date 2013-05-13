@@ -2,7 +2,7 @@ CREATE SCHEMA sub_app;
 
 CREATE TABLE sub_app.users (
   user_no uuid PRIMARY KEY,
-  email text NOT NULL, 
+  email text UNIQUE NOT NULL, 
   first_name text,
   last_name text
 );
@@ -11,8 +11,7 @@ CREATE INDEX users_email_index ON sub_app.users (email);
 
 CREATE TABLE sub_app.products (
   product_no uuid PRIMARY KEY,
-  name text NOT NULL,
-  version text NOT NULL,
+  name text UNIQUE NOT NULL,
   public_key text,
   private_key text
 );
