@@ -12,7 +12,13 @@ Client application will then have to:
 
 Usage
 -----
+Edit ``priv/sys.config`` with your database details: ``{hostname, "127.0.0.1"}, {database, "db1"}, {username, "db1"}, {password, "abc123"}``
+
+Run the server:
+
     ./start.sh
+Interface:
+
     1> subscripterl:create_user("user@test.com").
         {ok,<<"c2226e10-0a10-413d-b516-cc4ab2165a8c">>}
     2> {ok, PublicKey} = subscripterl:create_product("test_product_v1").
