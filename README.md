@@ -1,6 +1,8 @@
 subscripterl
 ============
 
+# This is deprecated. I moved to an Elixir-Phoenix based solution, available [here](https://github.com/adanselm/sbapi).
+
 Subscripterl is an Erlang/OTP Application to manage your customers' access to your products:
 * Create a database of users and products
 * Generate a key pair for you to embed in your product (only the public key of course)
